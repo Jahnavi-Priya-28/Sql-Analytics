@@ -1,0 +1,541 @@
+/* =============================================================================
+   Jahnavi Priya SQL Analytics Portfolio
+   Light Mode Canvas: #faf9f5 | Dark Mode Canvas: #181715 | Coral Accent: #cc785c
+   ============================================================================= */
+
+:root {
+    /* Brand & Accent */
+    --color-primary: #cc785c;
+    --color-primary-active: #a9583e;
+    --color-primary-disabled: #e6dfd8;
+    --color-accent-teal: #5db8a6;
+    --color-accent-amber: #e8a55a;
+
+    /* Light Theme Surface Tokens (Default) */
+    --color-canvas: #faf9f5;
+    --color-surface-soft: #f5f0e8;
+    --color-surface-card: #efe9de;
+    --color-surface-cream-strong: #e8e0d2;
+    --color-surface-dark: #181715;
+    --color-surface-dark-elevated: #252320;
+    --color-surface-dark-soft: #1f1e1b;
+    --color-hairline: #e6dfd8;
+    --color-hairline-soft: #ebe6df;
+
+    /* Text Tokens */
+    --color-ink: #141413;
+    --color-body-strong: #252523;
+    --color-body: #3d3d3a;
+    --color-muted: #6c6a64;
+    --color-muted-soft: #8e8b82;
+    --color-on-primary: #ffffff;
+    --color-on-dark: #faf9f5;
+    --color-on-dark-soft: #a09d96;
+    --color-success: #5db872;
+
+    /* Fonts */
+    --font-serif: 'Cormorant Garamond', 'Tiempos Headline', Georgia, serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* Border Radius Scale */
+    --radius-xs: 4px;
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-pill: 9999px;
+}
+
+/* Anthropic Dark Mode Tokens */
+[data-theme="dark"] {
+    --color-canvas: #181715;
+    --color-surface-soft: #1f1e1b;
+    --color-surface-card: #22201d;
+    --color-surface-cream-strong: #2c2925;
+    --color-surface-dark: #121110;
+    --color-surface-dark-elevated: #1d1c1a;
+    --color-surface-dark-soft: #0d0c0b;
+    --color-hairline: #33302b;
+    --color-hairline-soft: #292723;
+
+    --color-ink: #faf9f5;
+    --color-body-strong: #ebe8e1;
+    --color-body: #c7c3b8;
+    --color-muted: #969287;
+    --color-muted-soft: #706c62;
+    --color-on-dark: #faf9f5;
+    --color-on-dark-soft: #a09d96;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    min-height: 100vh;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Base Layout Container */
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar Styles (Light Cream / Editorial Dark) */
+.sidebar {
+    width: 280px;
+    background-color: var(--color-surface-card);
+    border-right: 1px solid var(--color-hairline);
+    display: flex;
+    flex-direction: column;
+    padding: 1.75rem 1.25rem;
+    flex-shrink: 0;
+    transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+/* Custom Vector Logo & Brand Layout */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--color-hairline);
+}
+
+.brand-logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.brand-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    flex: 1;
+}
+
+.brand-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.brand-title-row h2 {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 500;
+    letter-spacing: -0.3px;
+    color: var(--color-ink);
+    line-height: 1;
+}
+
+.brand-subtitle {
+    font-size: 0.72rem;
+    color: var(--color-muted);
+    font-weight: 500;
+    letter-spacing: 0.2px;
+}
+
+.badge-coral-mini {
+    font-family: var(--font-sans);
+    font-size: 0.62rem;
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+    padding: 0.15rem 0.45rem;
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.nav-section {
+    margin-top: 1.75rem;
+    flex: 1;
+}
+
+.section-title {
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--color-muted);
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    margin-bottom: 0.85rem;
+    padding-left: 0.2rem;
+}
+
+.query-nav {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.7rem 0.85rem;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-size: 0.88rem;
+    color: var(--color-body);
+    font-weight: 500;
+    transition: all 0.15s ease;
+}
+
+.nav-item:hover {
+    background-color: var(--color-surface-cream-strong);
+    color: var(--color-ink);
+}
+
+.nav-item.active {
+    background-color: var(--color-canvas);
+    color: var(--color-primary);
+    font-weight: 600;
+    border: 1px solid var(--color-hairline);
+    box-shadow: 0 1px 3px rgba(20, 20, 19, 0.04);
+}
+
+.sidebar-footer {
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-hairline);
+}
+
+.db-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    color: var(--color-muted);
+    font-weight: 500;
+}
+
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-success);
+    border-radius: 50%;
+}
+
+/* Main Content Area */
+.main-content {
+    flex: 1;
+    padding: 2.25rem 2.75rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+    background-color: var(--color-canvas);
+    transition: background-color 0.25s ease;
+}
+
+/* Top Header */
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--color-hairline);
+}
+
+.header-left h1 {
+    font-family: var(--font-serif);
+    font-size: 2.3rem;
+    font-weight: 400;
+    letter-spacing: -0.8px;
+    color: var(--color-ink);
+    line-height: 1.15;
+}
+
+.header-left p {
+    font-size: 0.92rem;
+    color: var(--color-muted);
+    margin-top: 0.3rem;
+}
+
+.header-right-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* Theme Toggle Button */
+.theme-toggle-btn {
+    background-color: var(--color-surface-card);
+    border: 1px solid var(--color-hairline);
+    color: var(--color-ink);
+    padding: 0.65rem 1.1rem;
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+    background-color: var(--color-surface-cream-strong);
+}
+
+.github-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+    padding: 0.65rem 1.2rem;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+    white-space: nowrap;
+}
+
+.github-btn:hover {
+    background-color: var(--color-primary-active);
+}
+
+/* KPI Cards (Light Cream Editorial Cards) */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 1.25rem;
+}
+
+.kpi-card {
+    background-color: var(--color-surface-card);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-lg);
+    padding: 1.35rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.kpi-label {
+    font-size: 0.72rem;
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-weight: 600;
+}
+
+.kpi-details h3 {
+    font-family: var(--font-serif);
+    font-size: 1.85rem;
+    font-weight: 400;
+    color: var(--color-ink);
+    letter-spacing: -0.5px;
+    margin: 0.3rem 0;
+}
+
+.kpi-sub {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--color-body);
+}
+
+.kpi-sub.positive { color: var(--color-primary); }
+
+/* Explanation Banner (Editorial Surface Card) */
+.explanation-card {
+    background-color: var(--color-surface-card);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-lg);
+    padding: 1.35rem 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.explanation-icon {
+    font-size: 1.25rem;
+    color: var(--color-primary);
+    margin-top: 0.1rem;
+}
+
+.explanation-content h3 {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    letter-spacing: -0.3px;
+    color: var(--color-ink);
+}
+
+.explanation-content p {
+    font-size: 0.9rem;
+    color: var(--color-body);
+    margin-top: 0.25rem;
+}
+
+/* Workspace Grid (Dark Navy Product Surfaces for Chrome/Code Editor) */
+.workspace-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+@media (max-width: 1100px) {
+    .workspace-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Dark Navy Code / Mockup Surface Cards */
+.dark-card {
+    background-color: var(--color-surface-dark);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    color: var(--color-on-dark);
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.dark-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dark-title-group h3 {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    letter-spacing: -0.3px;
+    color: var(--color-on-dark);
+}
+
+.run-btn {
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+    border: none;
+    padding: 0.55rem 1.1rem;
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: background-color 0.2s ease;
+}
+
+.run-btn:hover {
+    background-color: var(--color-primary-active);
+}
+
+/* Code Window Inner Block */
+.code-window-inner {
+    background-color: var(--color-surface-dark-soft);
+    border: 1px solid var(--color-surface-dark-elevated);
+    border-radius: var(--radius-md);
+    padding: 0.85rem;
+}
+
+#sql-editor {
+    width: 100%;
+    height: 180px;
+    background: transparent;
+    border: none;
+    color: #e8a55a; /* Warm Amber code color */
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    resize: vertical;
+    outline: none;
+}
+
+.query-info-bar {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: var(--color-on-dark-soft);
+}
+
+.tag-dark {
+    background-color: var(--color-surface-dark-elevated);
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-xs);
+    color: var(--color-on-dark-soft);
+}
+
+/* Chart Canvas Container inside Dark Surface */
+.chart-container {
+    position: relative;
+    height: 230px;
+    width: 100%;
+}
+
+/* Results Section (Dark Navy Product Chrome Table) */
+.results-card {
+    background-color: var(--color-surface-dark);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    color: var(--color-on-dark);
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.row-count {
+    font-size: 0.78rem;
+    background-color: var(--color-surface-dark-elevated);
+    padding: 0.2rem 0.65rem;
+    border-radius: var(--radius-pill);
+    color: var(--color-on-dark-soft);
+}
+
+.table-responsive {
+    overflow-x: auto;
+    max-height: 300px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    text-align: left;
+}
+
+th {
+    background-color: var(--color-surface-dark-elevated);
+    color: var(--color-on-dark-soft);
+    padding: 0.8rem 1rem;
+    font-weight: 500;
+    font-size: 0.72rem;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    position: sticky;
+    top: 0;
+}
+
+td {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--color-surface-dark-elevated);
+    color: var(--color-on-dark);
+    font-family: var(--font-mono);
+    font-size: 0.83rem;
+}
+
+tr:hover td {
+    background-color: rgba(255, 255, 255, 0.03);
+}
