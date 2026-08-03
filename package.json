@@ -4,7 +4,7 @@
   "private": true,
   "description": "Jahnavi Priya's SQL database understanding and analytics dashboard.",
   "scripts": {
-    "start": "python -m http.server 8000",
-    "build": "echo Static site - no build step required"
+    "start": "node scripts/serve-static.js",
+    "build": "node scripts/build-static.js"
   }
 }
